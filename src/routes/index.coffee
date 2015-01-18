@@ -10,12 +10,3 @@ server = http.createServer (req, res) ->
 server.listen PORT = 3000
 
 console.log "Server running at http://localhost:#{PORT}/"
-
-
-
-
-console.log "Server running at http://localhost:#{PORT}/"
-
-
-
-

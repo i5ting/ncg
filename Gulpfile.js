@@ -15,10 +15,7 @@ gulp.task('js', function () {
     .pipe(gulp.dest('build'));
 });
 
-gulp.task('watch', function () {
-   gulp.watch('templates/*.tmpl.html', ['build']);
-});
-
+ 
 gulp.task('browser-sync', function () {
   var files = [
     'app/**/*.html',
@@ -37,18 +34,38 @@ gulp.task('browser-sync', function () {
 var coffee = require('gulp-coffee');
 var coffeelint = require('gulp-coffeelint');
 
-gulp.task('coffee', function() {
-  gulp.src('./src/*.coffee')
+
+var cache = require('gulp-cached');
+
+gulp.task('lint', function(){
+  // return gulp.src('files/*.js')
+  //   .pipe(cache('coffee'))
+  //   .pipe(jshint())
+  //   .pipe(jshint.reporter())
+});
+
+
+// for coffeescript
+gulp.task('coffee', ['coffeelint'], function() {
+  gulp.src('./src/**/*.coffee')
+		.pipe(cache('coffee'))
     .pipe(coffee({bare: true}).on('error', gutil.log))
     .pipe(gulp.dest('./build/'))
 });
 
-gulp.task('lint', function () {
-    gulp.src('./src/*.coffee')
+gulp.task('watch_coffee', function(){
+  gulp.watch('src/**/*.coffee', ['coffee']);
+});
+
+gulp.task('coffeelint', function () {
+    gulp.src('./src/**/*.coffee')
         .pipe(coffeelint())
         .pipe(coffeelint.reporter())
 });
 
-gulp.task('default',['coffee'], function () {
+gulp.task('watch', ['watch_coffee']);
+gulp.task('copy', ['watch_coffee']);
+
+gulp.task('default', ['watch', 'coffee'], function () {
    // Your default task
 });
