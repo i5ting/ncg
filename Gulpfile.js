@@ -3,6 +3,8 @@ var gulp = require('gulp'),
    uglify = require('gulp-uglify'),
 	 browserSync = require('browser-sync'),
    concat = require('gulp-concat');
+
+var gutil = require('gutil');
 	 
 gulp.task('js', function () {
   return gulp.src('js/*.js')
@@ -38,7 +40,7 @@ var coffeelint = require('gulp-coffeelint');
 gulp.task('coffee', function() {
   gulp.src('./src/*.coffee')
     .pipe(coffee({bare: true}).on('error', gutil.log))
-    .pipe(gulp.dest('./public/'))
+    .pipe(gulp.dest('./build/'))
 });
 
 gulp.task('lint', function () {
@@ -47,6 +49,6 @@ gulp.task('lint', function () {
         .pipe(coffeelint.reporter())
 });
 
-gulp.task('default', function () {
+gulp.task('default',['coffee'], function () {
    // Your default task
 });
