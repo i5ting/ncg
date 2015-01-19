@@ -79,7 +79,7 @@ gulp.task('coffeelint', function () {
         .pipe(coffeelint.reporter())
 });
 
-gulp.task('watch', ['watch_coffee', 'watch_bin', 'watch_public', 'watch_views']);
+gulp.task('watch', ['watch_coffee', 'watch_bin', 'watch_public', 'watch_views', 'watch_package_json']);
 gulp.task('copy', ['watch_coffee']);
 
 gulp.task('watch_coffee', function(){
@@ -107,6 +107,17 @@ gulp.task('watch_public', function(){
 
 gulp.task('watch_views', function(){
   return cp(['src/views/**/*'],'./build/views/')
+});
+
+gulp.task('watch_package_json', function(){
+  gulp.watch('./package.json',[] ,function(){
+		console.log('  package package package')
+		// Run external tool synchronously
+		// if (exec('npm install').code !== 0) {
+		//   echo('Error: npm install failed');
+		//   exit(1);
+		// }
+  });
 });
 
 function cp(sources,dest){

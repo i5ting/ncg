@@ -18,7 +18,9 @@
   },
   "devDependencies": {
     "del": "^1.1.1",
+    "gulp": "^3.8.10",
     "gulp-cached": "^1.0.2",
-    "gulp-newer": "^0.5.0"
+    "gulp-newer": "^0.5.0",
+    "request": "latest"
   }
 }
