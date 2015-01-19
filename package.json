@@ -1,6 +1,6 @@
 {
   "name": "ncg",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "scripts": {
     "start": "./node_modules/.bin/supervisor ./build/bin/www",
