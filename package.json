@@ -1,9 +1,10 @@
 {
   "name": "ncg",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.0",
+  "private": false,
   "scripts": {
-    "start": "./node_modules/.bin/supervisor ./build/bin/www"
+    "start": "./node_modules/.bin/supervisor ./build/bin/www",
+		"pub": "npm publish ."
   },
   "preferGlobal": "true",
   "bin": {
