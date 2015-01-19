@@ -40,3 +40,6 @@ start
 - views
 - package.json(auto npm install)
 
+## Feature
+
+- 增加ncg命令，创建项目模板
