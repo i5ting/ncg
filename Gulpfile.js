@@ -54,14 +54,17 @@ var path = {
 // });
 
 
-// start server 
-gulp.task('start_server', function(){
-	return;
+// stop server 
+gulp.task('stop_server', function(){
 	// Run external tool synchronously
-	if (exec('npm start').code !== 0) {
-	  echo('Error: npm start failed');
-	  exit(1);
-	}
+	exec("ps -ef|grep build|awk '{print $2}'|xargs kill -9", {async:true});
+});
+
+// start server 
+gulp.task('start_server', ['stop_server'], function(){
+	setTimeout(function(){
+		exec('npm start', {async:true})
+	},2000);
 });
 
 
@@ -85,17 +88,6 @@ gulp.task('copy', ['watch_coffee']);
 gulp.task('watch_coffee', function(){
   gulp.watch(path.scripts, ['coffee']);
 });
-// gulp.task('watch_bin', function(){
-//   return cp(['src/bin/**'],'./build/bin/')
-// });
-//
-// gulp.task('watch_public', function(){
-// 	return cp(['src/public/**'],'./build/public/')
-// });
-//
-// gulp.task('watch_views', function(){
-//   return cp(['src/views/**.*'],'./build/views/')
-// });
 
 gulp.task('watch_bin', function(){
   return cp(['src/bin/**/*'],'./build/bin/')
@@ -111,7 +103,7 @@ gulp.task('watch_views', function(){
 
 gulp.task('watch_package_json', function(){
   gulp.watch('./package.json',[] ,function(){
-		console.log('  package package package')
+		console.log('package package package')
 		// Run external tool synchronously
 		// if (exec('npm install').code !== 0) {
 		//   echo('Error: npm install failed');
