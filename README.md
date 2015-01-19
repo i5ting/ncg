@@ -29,3 +29,14 @@ start
 - 变动了资源文件就copy
 - 由于server启动用的是supervisor，它会自动检查变动，重载的
 - 增加browser-sync自动livereload浏览器内容
+
+
+## detect
+
+
+- **/*.coffee
+- bin
+- public
+- views
+- package.json(auto npm install)
+
