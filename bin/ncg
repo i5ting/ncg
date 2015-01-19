@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+require('shelljs/global');
+
+var pwd = process.cwd();
+
+
+// 模板
+var path_arr =  __dirname.split('/');
+path_arr.pop();
+var tpl_path = path_arr.join("/");
+
+
+var gulp = require("gulp")
+
+ gulp.src(tpl_path + "/**")
+    .pipe(gulp.dest(pwd));
