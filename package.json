@@ -4,7 +4,8 @@
   "private": false,
   "scripts": {
     "start": "./node_modules/.bin/supervisor ./build/bin/www",
-    "pub": "npm publish ."
+    "pub": "npm publish .",
+		"clean":"rm -rf build/* && echo ''>build/.gitkeeper"
   },
   "preferGlobal": "true",
   "bin": {

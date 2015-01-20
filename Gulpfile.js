@@ -112,7 +112,10 @@ gulp.task('watch_package_json', function(){
   });
 });
 
+// watch 之前需要先copy一次的,这样才能同步
 function cp(sources,dest){
+	gulp.src(sources).pipe(gulp.dest(dest));
+	
 	return gulp.watch(sources, [] ,function(){
 	 	return gulp.src(sources)
 	    .pipe(gulp.dest(dest));
