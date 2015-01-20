@@ -4,10 +4,10 @@
 
 [![npm version](https://badge.fury.io/js/ncg.svg)](http://badge.fury.io/js/ncg)
 
-## Step
+## Features
 
-	npm init
-	express .
+- 使用express generator的代码结构
+- 使用ncg命令，创建项目模板
 
 ## 目录说明
 
@@ -42,10 +42,6 @@ start
 - views
 - package.json(auto npm install)
 
-## Features
-
-- 使用express generator的代码结构
-- 使用ncg命令，创建项目模板
 
 ## Usage
 
@@ -96,6 +92,25 @@ Watching directory '/Users/sang/www/ncgtest' for changes.
 
 ```
 
-## History
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
+
+## 版本历史
 
 - v0.1.2 修正watch之前没有copy的问题
+
+## 欢迎fork和反馈
+
+- write by `i5ting` shiren1118@126.com
+
+如有建议或意见，请在issue提问或邮件
+
+## License
+
+this repo is released under the [MIT
+License](http://www.opensource.org/licenses/MIT).
