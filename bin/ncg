@@ -1,19 +1,34 @@
 #!/usr/bin/env node
+
 require('shelljs/global');
+
 var config = require('../package.json');
-
+var emptyDir = require('empty-dir');
 var program = require('commander');
-
 		
 program
   .version(config.version)
 	.usage(' or ncg --version')
+	.option('-f, --force', '强制把项目模板copy到当前目录下')
   .parse(process.argv);
-
 
 if(process.argv.length == 2){
 	console.log('当前正在执行ncg命令，无任何参数，会把项目模板copy到当前目录下，可能需要几秒钟时间');
 
+	var result = emptyDir.sync('./test/empty');
+	if(result == true){
+		cp_files_to_current_dir()
+	}else{
+		console.log('Directory is not empty, please use ncg -f');
+	}
+} 
+
+if (program.force){
+	cp_files_to_current_dir()
+}
+
+function cp_files_to_current_dir(){
+	console.log('Directory is empty');
 	var pwd = process.cwd();
 
 	// 模板
@@ -26,4 +41,4 @@ if(process.argv.length == 2){
 
 	 gulp.src(tpl_path + "/**")
 	    .pipe(gulp.dest(pwd));
-} 
+}
