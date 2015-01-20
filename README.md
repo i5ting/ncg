@@ -1,6 +1,8 @@
 # ncg
 
-nodejs + coffeescript  + gulp
+`nodejs` + `coffeescript`  + `gulp`
+
+[![npm version](https://badge.fury.io/js/ncg.svg)](http://badge.fury.io/js/ncg)
 
 ## Step
 
@@ -43,3 +45,7 @@ start
 ## Feature
 
 - 增加ncg命令，创建项目模板
+
+## History
+
+- v0.1.2 修正watch之前没有copy的问题
