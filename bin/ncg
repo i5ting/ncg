@@ -1,16 +1,29 @@
 #!/usr/bin/env node
 require('shelljs/global');
+var config = require('../package.json');
 
-var pwd = process.cwd();
+var program = require('commander');
+
+		
+program
+  .version(config.version)
+	.usage(' or ncg --version')
+  .parse(process.argv);
 
 
-// 模板
-var path_arr =  __dirname.split('/');
-path_arr.pop();
-var tpl_path = path_arr.join("/");
+if(process.argv.length == 2){
+	console.log('当前正在执行ncg命令，无任何参数，会把项目模板copy到当前目录下，可能需要几秒钟时间');
+
+	var pwd = process.cwd();
+
+	// 模板
+	var path_arr =  __dirname.split('/');
+	path_arr.pop();
+	var tpl_path = path_arr.join("/");
 
 
-var gulp = require("gulp")
+	var gulp = require("gulp")
 
- gulp.src(tpl_path + "/**")
-    .pipe(gulp.dest(pwd));
+	 gulp.src(tpl_path + "/**")
+	    .pipe(gulp.dest(pwd));
+} 
