@@ -42,6 +42,9 @@ start
 - views
 - package.json(auto npm install)
 
+## Install 
+
+	[sudo] npm install -g ncg
 
 ## Usage
 
