@@ -49,6 +49,18 @@ start
 ## Usage
 
 ```
+➜  ncgtest  ncg --help
+
+  Usage: ncg  or ncg --version
+
+  Options:
+
+    -h, --help     output usage information
+    -V, --version  output the version number
+    -f, --force    强制把项目模板copy到当前目录下
+
+➜  ncgtest  ncg --version
+0.1.5
 ➜  ncgtest  ncg
 ➜  ncgtest  ls
 Gulpfile.js  LICENSE      README.md    bin          node_modules package.json src
@@ -94,6 +106,10 @@ Starting child process with 'node ./build/bin/www'
 Watching directory '/Users/sang/www/ncgtest' for changes.
 
 ```
+
+如果当前目录是非空目录，请使用
+
+	ncg -f 
 
 ## Contributing
 
