@@ -17,7 +17,7 @@ require('shelljs/global')
 
 var path = {
   scripts: ['./src/**/*.coffee'],
-	scripts_dest: './build/',
+	scripts_dest: './src/',
   images: 'client/img/**/*'
 };
 
@@ -29,7 +29,7 @@ var path = {
 //     .pipe(jshint.reporter('default'))
 //     .pipe(uglify())
 //     .pipe(concat('app.js'))
-//     .pipe(gulp.dest('build'));
+//     .pipe(gulp.dest('src'));
 // });
 //
 //
@@ -50,14 +50,14 @@ var path = {
 //
 // gulp.task('clean', function(cb) {
 //   // You can use multiple globbing patterns as you would with `gulp.src`
-//   del(['build'], cb);
+//   del(['src'], cb);
 // });
 
 
 // stop server 
 gulp.task('stop_server', function(){
 	// Run external tool synchronously
-	exec("ps -ef|grep build|awk '{print $2}'|xargs kill -9", {async:true});
+	exec("ps -ef|grep src|awk '{print $2}'|xargs kill -9", {async:true});
 });
 
 // start server 
@@ -90,15 +90,15 @@ gulp.task('watch_coffee', function(){
 });
 
 gulp.task('watch_bin', function(){
-  return cp(['src/bin/**/*'],'./build/bin/')
+  return cp(['src/bin/**/*'],'./src/bin/')
 });
 
 gulp.task('watch_public', function(){
-	return cp(['src/public/**/*'],'./build/public/')
+	return cp(['src/public/**/*'],'./src/public/')
 });
 
 gulp.task('watch_views', function(){
-  return cp(['src/views/**/*'],'./build/views/')
+  return cp(['src/views/**/*'],'./src/views/')
 });
 
 gulp.task('watch_package_json', function(){
