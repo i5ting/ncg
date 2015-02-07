@@ -121,6 +121,7 @@ Watching directory '/Users/sang/www/ncgtest' for changes.
 
 ## 版本历史
 
+- v0.1.6 更改编译目录为src下，另在package.json增加build配置项
 - v0.1.2 修正watch之前没有copy的问题
 
 ## 欢迎fork和反馈
