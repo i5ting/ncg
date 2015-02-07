@@ -5,7 +5,7 @@
   "src"    : "src",
   "build"  : "src",
   "scripts": {
-    "start": "./node_modules/.bin/supervisor ./build/bin/www",
+    "start": "./node_modules/.bin/supervisor ./src/bin/www",
     "pub": "npm publish .",
     "clean": "rm -rf build/* && echo ''>build/.gitkeeper"
   },
