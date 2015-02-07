@@ -14,46 +14,12 @@ var newer = require('gulp-newer');
 require('shelljs/global')
 
 
-
 var path = {
   scripts: ['./src/**/*.coffee'],
 	scripts_dest: './src/',
   images: 'client/img/**/*'
 };
-
-//
-//
-// gulp.task('js', function () {
-//   return gulp.src('js/*.js')
-//     .pipe(jshint())
-//     .pipe(jshint.reporter('default'))
-//     .pipe(uglify())
-//     .pipe(concat('app.js'))
-//     .pipe(gulp.dest('src'));
-// });
-//
-//
-// gulp.task('browser-sync', function () {
-//   var files = [
-//     'app/**/*.html',
-//     'app/assets/css/**/*.css',
-//     'app/assets/imgs/**/*.png',
-//     'app/assets/js/**/*.js'
-//   ];
-//
-//   browserSync.init(files, {
-//     server: {
-//       baseDir: './app'
-//     }
-//   });
-// });
-//
-// gulp.task('clean', function(cb) {
-//   // You can use multiple globbing patterns as you would with `gulp.src`
-//   del(['src'], cb);
-// });
-
-
+ 
 // stop server 
 gulp.task('stop_server', function(){
 	// Run external tool synchronously
@@ -122,6 +88,6 @@ function cp(sources,dest){
 	});
 }
 
-gulp.task('default', ['watch', 'coffee', 'start_server'], function () {
+gulp.task('default', [  'coffee'], function () {
    // Your default task
 });
