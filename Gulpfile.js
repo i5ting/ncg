@@ -1,17 +1,15 @@
-var gulp = require('gulp'),
-   jshint = require('gulp-jshint'),
-   uglify = require('gulp-uglify'),
-	 browserSync = require('browser-sync'),
-   concat = require('gulp-concat');
-
+var gulp = require('gulp');
 var gutil = require('gutil');
-var del = require('del');
+var concat = require('gulp-concat');
 var coffee = require('gulp-coffee');
 var coffeelint = require('gulp-coffeelint');
 var cache = require('gulp-cached');
-var newer = require('gulp-newer');
-
-require('shelljs/global')
+var istanbul = require('gulp-istanbul');
+var mocha = require('gulp-mocha');
+var compass = require('gulp-compass');
+var minify_css = require('gulp-minify-css');
+var jade = require('gulp-jade');
+require('shelljs/global');
 
 var config = require('./package.json')
 var path = {
@@ -35,7 +33,7 @@ gulp.task('start_server', ['stop_server'], function(){
 
 
 // for coffeescript
-gulp.task('coffee', ['coffeelint'], function() {
+gulp.task('compile_coffee', ['coffeelint'], function() {
   gulp.src(path.scripts)
 		.pipe(cache('coffee'))
     .pipe(coffee({bare: true}).on('error', gutil.log))
@@ -47,6 +45,28 @@ gulp.task('coffeelint', function () {
         .pipe(coffeelint())
         .pipe(coffeelint.reporter())
 });
+
+//////////////////// Test ////////////////////
+
+gulp.task('test', ['compile_coffee'],function (cb) {
+  gulp.src(['src/test/**/*.js'])
+    .pipe(istanbul()) // Covering files
+    .on('finish', function () {
+      gulp.src(['src/test/*.js'])
+        .pipe(mocha({
+					ui : 'bdd',
+					reporter: 'spec'
+				}))
+        .pipe(istanbul.writeReports()) // Creating the reports after tests runned
+        .on('end', cb);
+    });
+});
+
+//////////////////// Clean ////////////////////
+gulp.task('clean', function(){
+  rm('-Rf','build/test')
+});
+
 
 gulp.task('watch', ['watch_coffee', 'watch_bin', 'watch_public', 'watch_views', 'watch_package_json']);
 gulp.task('copy', ['watch_coffee']);
@@ -88,6 +108,6 @@ function cp(sources,dest){
 	});
 }
 
-gulp.task('default', [  'coffee'], function () {
+gulp.task('default', [  'compile_coffee'], function () {
    // Your default task
 });

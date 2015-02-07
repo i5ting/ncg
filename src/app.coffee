@@ -1,4 +1,5 @@
 express = require 'express'
+session = require 'express-session'
 path = require 'path'
 favicon = require 'serve-favicon'
 logger = require 'morgan'
@@ -10,6 +11,27 @@ users = require './routes/users'
 
 app = express()
 
+cors = require('cors')
+# 支持跨域
+app.use(cors())
+
+store = new session.MemoryStore()
+
+half_hour = 3600000/2
+
+app.use(session({
+  store: store ,
+  secret: 'gupjia.ng@me',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false, maxAge: half_hour }
+}))
+
+# Make our db accessible to our router
+app.use (req,res,next) ->
+  req.model = require('./models')
+  next()
+  
 # view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'jade')

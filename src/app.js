@@ -1,6 +1,8 @@
-var app, bodyParser, cookieParser, express, favicon, logger, path, routes, users;
+var app, bodyParser, cookieParser, cors, express, favicon, half_hour, logger, path, routes, session, store, users;
 
 express = require('express');
+
+session = require('express-session');
 
 path = require('path');
 
@@ -17,6 +19,30 @@ routes = require('./routes/index');
 users = require('./routes/users');
 
 app = express();
+
+cors = require('cors');
+
+app.use(cors());
+
+store = new session.MemoryStore();
+
+half_hour = 3600000 / 2;
+
+app.use(session({
+  store: store,
+  secret: 'gupjia.ng@me',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    secure: false,
+    maxAge: half_hour
+  }
+}));
+
+app.use(function(req, res, next) {
+  req.model = require('./models');
+  return next();
+});
 
 app.set('views', path.join(__dirname, 'views'));
 
