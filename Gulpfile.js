@@ -13,10 +13,10 @@ var newer = require('gulp-newer');
 
 require('shelljs/global')
 
-
+var config = require('./package.json')
 var path = {
   scripts: ['./src/**/*.coffee'],
-	scripts_dest: './src/',
+	scripts_dest: config.build,
   images: 'client/img/**/*'
 };
  
